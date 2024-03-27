@@ -50,6 +50,13 @@ val projectTemplate
             help = "If true, this will add PinView dependency in the project which will help you make OTP capture view"
         }
 
+        val disableScreenshot: BooleanParameter = booleanParameter {
+            name = "Disable Screenshot?"
+            visible = { true }
+            default = false
+            help = "If true, this will disable screenshot for Prod environment"
+        }
+
         val appName: StringParameter = stringParameter {
             name = "App name"
             default = "DemoApp"
@@ -61,6 +68,7 @@ val projectTemplate
             TextFieldWidget(appName),
             CheckBoxWidget(shallAddRoom),
             CheckBoxWidget(shallAddPinView),
+            CheckBoxWidget(disableScreenshot),
             PackageNameWidget(packageName),
         )
 
@@ -75,7 +83,8 @@ val projectTemplate
                 shallAddPinView.value,
                 packageName.value,
                 appName.value,
-                minApi
+                minApi,
+                disableScreenshot.value
             )
         }
 

@@ -108,8 +108,8 @@ fun emptyModuleBuildGradleWidOut(
         }
         //Please see that below java version is compatible with your JVM target version
         compileOptions {
-            sourceCompatibility JavaVersion.VERSION_1_8
-            targetCompatibility JavaVersion.VERSION_1_8
+            sourceCompatibility JavaVersion.VERSION_17
+            targetCompatibility JavaVersion.VERSION_17
         }
         
         //If you're JVM is 17,then use

@@ -143,10 +143,10 @@ private fun RecipeExecutor.domainRepository(moduleTemplateData: ModuleTemplateDa
 
 
 ///// PRESENTATION LAYER STARTS HERE
-fun RecipeExecutor.setPresentationLayer(moduleTemplateData: ModuleTemplateData, appName: String) {
+fun RecipeExecutor.setPresentationLayer(moduleTemplateData: ModuleTemplateData, appName: String, shallAddRoom: Boolean) {
     createDirectory(moduleTemplateData.srcDir.resolve("presentation"))
     presentationAdapter(moduleTemplateData)
-    presentationDi(moduleTemplateData, appName)
+    presentationDi(moduleTemplateData, appName, shallAddRoom)
     presentationManager(moduleTemplateData)
     presentationView(moduleTemplateData)
     presentationViewModel(moduleTemplateData, appName)
@@ -208,17 +208,20 @@ private fun RecipeExecutor.presentationManager(moduleTemplateData: ModuleTemplat
 
 private fun RecipeExecutor.presentationDi(
     moduleTemplateData: ModuleTemplateData,
-    appName: String
+    appName: String,
+    shallAddRoom: Boolean
 ) {
     createDirectory(moduleTemplateData.srcDir.resolve("presentation/di"))
     save(
         emptyDoaDi(moduleTemplateData.packageName, appName),
         moduleTemplateData.srcDir.resolve("presentation/di/DoaModule.kt")
     )
-    save(
-        emptyDbDi(moduleTemplateData.packageName, appName),
-        moduleTemplateData.srcDir.resolve("presentation/di/DatabaseModule.kt")
-    )
+    if (shallAddRoom)
+        save(
+            emptyDbDi(moduleTemplateData.packageName, appName),
+            moduleTemplateData.srcDir.resolve("presentation/di/DatabaseModule.kt")
+        )
+
     save(
         emptyDataSourceDi(moduleTemplateData.packageName, appName),
         moduleTemplateData.srcDir.resolve("presentation/di/DataSourceModule.kt")

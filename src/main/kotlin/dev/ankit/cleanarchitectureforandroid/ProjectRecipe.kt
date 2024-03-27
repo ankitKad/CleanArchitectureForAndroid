@@ -19,7 +19,8 @@ fun RecipeExecutor.generateEmptyActivityWithCA(
     shallAddPinView: Boolean,
     packageName: String,
     appName: String,
-    minApi: Int
+    minApi: Int,
+    disableScreenshot: Boolean
 ) {
 
     val (projectData, srcOut, resOut, manifestOut) = moduleTemplateData
@@ -85,7 +86,7 @@ fun RecipeExecutor.generateEmptyActivityWithCA(
      */
     setDataLayer(moduleTemplateData, shallAddRoom, appName)
     setDomainLayer(moduleTemplateData, appName)
-    setPresentationLayer(moduleTemplateData, appName)
+    setPresentationLayer(moduleTemplateData, appName, shallAddRoom)
 
     generateManifestXml(manifestOut, packageName, appName)
 
@@ -95,7 +96,7 @@ fun RecipeExecutor.generateEmptyActivityWithCA(
 
 
     save(
-        emptyApplication(packageName, appName),
+        emptyApplication(packageName, appName, disableScreenshot),
         moduleTemplateData.srcDir.resolve("${appName.capitalize()}Application.kt")
     )
     save(
