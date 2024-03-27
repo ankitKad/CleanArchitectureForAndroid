@@ -117,7 +117,8 @@ fun emptyNetworkModuleDi(
         @Singleton
         fun provideRetrofitInstance(): Retrofit {
             val loggingInterceptor = HttpLoggingInterceptor().apply {
-                level = HttpLoggingInterceptor.Level.BODY
+                //Following code will disable the Logging Interceptor for Prod environment
+                level = if (BuildConfig.FLAVOR != "prod") HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
             }
 
             val okHttpClient = OkHttpClient
