@@ -4,7 +4,18 @@ import com.android.tools.idea.wizard.template.escapeKotlinIdentifier
 import org.jetbrains.kotlin.lombok.utils.capitalize
 
 fun emptyApplication(packageName: String, itemName: String, disableScreenshot: Boolean): String {
-    var doDisableScreenshot =
+    val additionalImports =
+        if(disableScreenshot) {
+          """
+            import android.app.Activity
+            import android.os.Bundle
+            import android.view.WindowManager
+          """.trimIndent()
+        } else {
+            """
+            """.trimIndent()
+        }
+    val doDisableScreenshot =
         if (!disableScreenshot) {
             """ 
             """.trimIndent()
@@ -59,6 +70,12 @@ package ${escapeKotlinIdentifier(packageName)}
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
+$additionalImports
+
+/**
+ * Go the project pane in project explorer, find readme.txt file, and read and apply the instructions provided..
+ * You'll be able to run the project smoothly
+ */
 
 @HiltAndroidApp
 class ${itemName.capitalize()}Application: Application()

@@ -214,7 +214,7 @@ private fun RecipeExecutor.presentationDi(
     createDirectory(moduleTemplateData.srcDir.resolve("presentation/di"))
     save(
         emptyDoaDi(moduleTemplateData.packageName, appName),
-        moduleTemplateData.srcDir.resolve("presentation/di/DoaModule.kt")
+        moduleTemplateData.srcDir.resolve("presentation/di/DaoModule.kt")
     )
     if (shallAddRoom)
         save(

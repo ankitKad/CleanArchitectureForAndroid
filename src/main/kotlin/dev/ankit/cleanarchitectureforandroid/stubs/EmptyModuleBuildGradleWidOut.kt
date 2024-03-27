@@ -68,7 +68,7 @@ fun emptyModuleBuildGradleWidOut(
                 targetSdk 34
                 versionCode 1
                 versionName "1.0"
-                buildConfigField "String","baseUrl", "\"" + properties["endpoint"] + "\""
+                buildConfigField "String","baseUrl", "\"" + properties["stagingendpoint"] + "\""
 
             }
 
@@ -79,7 +79,7 @@ fun emptyModuleBuildGradleWidOut(
                 targetSdk 34
                 versionCode 1
                 versionName "1.0"
-                buildConfigField "String","baseUrl", "\"" + properties["endpoint"] + "\""
+                buildConfigField "String","baseUrl", "\"" + properties["preprodendpoint"] + "\""
             }
 
             prod {
@@ -89,7 +89,7 @@ fun emptyModuleBuildGradleWidOut(
                 targetSdk 34
                 versionCode 1
                 versionName "1.0"
-                buildConfigField "String","baseUrl", "\"" + properties["endpoint"] + "\""
+                buildConfigField "String","baseUrl", "\"" + properties["prodendpoint"] + "\""
             }
 
         }

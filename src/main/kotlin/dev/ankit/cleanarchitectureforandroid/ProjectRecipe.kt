@@ -6,10 +6,7 @@ import com.android.tools.idea.wizard.template.impl.activities.common.addAllKotli
 import com.android.tools.idea.wizard.template.impl.activities.common.addMaterialDependency
 import com.android.tools.idea.wizard.template.impl.activities.emptyActivity.src.emptyActivityKt
 import dev.ankit.cleanarchitectureforandroid.*
-import dev.ankit.cleanarchitectureforandroid.stubs.emptyApplication
-import dev.ankit.cleanarchitectureforandroid.stubs.emptyGradleProperties
-import dev.ankit.cleanarchitectureforandroid.stubs.emptyModuleBuildGradle
-import dev.ankit.cleanarchitectureforandroid.stubs.emptyModuleBuildGradleWidOut
+import dev.ankit.cleanarchitectureforandroid.stubs.*
 import dev.ankit.cleanarchitectureforandroid.stubs.presentation.emptyLauncherActivity
 import java.io.File
 
@@ -104,14 +101,13 @@ fun RecipeExecutor.generateEmptyActivityWithCA(
         moduleTemplateData.srcDir.resolve("LauncherActivity.kt")
     )
 
-
-    /*copy(
-        File(emptyModuleBuildGradle(moduleTemplateData.packageName,minApi, shallAddRoom, shallAddPinView)),
-        moduleTemplateData.rootDir.resolve("build.gradle.kts")
-    )*/
-
-
+    save(
+        emptyReadMeText(),
+        moduleTemplateData.srcDir.resolve("readme.txt")
+    )
 
     open(moduleTemplateData.srcDir.resolve("${appName.capitalize()}Application.kt"))
+
+    open(moduleTemplateData.srcDir.resolve("readme.txt"))
 
 }
