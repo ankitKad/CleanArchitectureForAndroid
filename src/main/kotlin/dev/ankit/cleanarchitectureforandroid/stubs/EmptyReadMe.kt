@@ -3,8 +3,14 @@ package dev.ankit.cleanarchitectureforandroid.stubs
 fun emptyReadMeText(): String {
     val navVersion = "$".plus("navVersion")
     return """
+    Before setting up initial configurations
     1. Keep Minimum SDK 24
-    2. Select kotlin DSL as Build Configuration Language
+    2. Select Kotlin DSL as Build Configuration Language
+    3. Set App Name, please note that this will get reflected 
+    3. Select dependencies/functionality you need within app, whether be it Room, PinView, Disable screenshot,
+       RootCheck.
+    
+    After setting up initial configurations
     3. Add below code to project level build.gradle.kts file
     // Top-level build file where you can add configuration options common to all sub-projects/modules.
     buildscript {
