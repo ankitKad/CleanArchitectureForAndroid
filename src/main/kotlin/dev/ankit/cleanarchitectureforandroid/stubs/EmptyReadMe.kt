@@ -27,7 +27,7 @@ fun emptyReadMeText(): String {
         id("org.jetbrains.kotlin.android") version "1.9.10" apply false
         id("com.google.dagger.hilt.android") version "2.50" apply false
     }
-    4. Add this line in Project level gradle.properties file
+    4. Add this line in Project level gradle.properties file, change the values according to your endpoint
     stagingendpoint=https://com.example.in/
     preprodendpoint=https://com.example.in/
     prodendpoint=https://com.example.in/
