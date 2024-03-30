@@ -5,7 +5,7 @@
 
     <!-- Public plugin name should be written in Title Case.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
-    <name>CleanArchitectureForAndroid</name>
+    <name>Clean Architecture For Android</name>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
     <vendor email="kadamankit39@gmail.com" url="https://www.ankitkadam.com">Ankit Kadam</vendor>
@@ -15,7 +15,51 @@
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
     <description><![CDATA[
     This project helps set up the Clean Architecture for Android using few taps.<br>
-    <em>This will cut setup time to few seconds</em>
+    <em>This will cut setup time to few seconds</em><br>
+
+    This plugin offers following benefits:<br>
+    1. Clean Architecture setup with specific folders, for example, data, domain, presentation.<br>
+    2. It offers default dependency injection, and code is auto generated.<br>
+    3. It offers encrypted Shared Preference.<br>
+    4. It offers encrypted Room Db.<br>
+    5. It offers build variant.<br>
+    and many more features.<br>
+
+    <em>Please go through details tab to read more about how to implement the plugin</em><br>
+
+    Please read following steps to ensure smooth integration:<br>
+
+    1. Keep Minimum SDK 24.<br>
+    2. Select Kotlin DSL as Build Configuration Language.<br>
+    3. Set App Name, please note that this will get reflected.<br>
+    3. Select dependencies/functionality you need within app, whether be it Room, PinView, Disable screenshot,
+       RootCheck.<br>
+
+    After setting up initial configurations<br>
+    3. Add below code to project level build.gradle.kts file.<br>
+    // Top-level build file where you can add configuration options common to all sub-projects/modules.<br>
+    buildscript {<br>
+        repositories {<br>
+            google()<br>
+        }<br>
+        dependencies {<br>
+            val navVersion = "2.7.6"<br>
+            classpath("androidx.navigation:navigation-safe-args-gradle-plugin:$navVersion")<br>
+        }<br>
+    }<br>
+    plugins {<br>
+        id("com.android.application") version "8.2.0" apply false<br>
+        id("org.jetbrains.kotlin.android") version "1.9.10" apply false<br>
+        id("com.google.dagger.hilt.android") version "2.50" apply false<br>
+    }<br>
+    4. Add this line in Project level gradle.properties file, change the values according to your endpoint<br>
+    stagingendpoint=https://com.example.in/<br>
+    preprodendpoint=https://com.example.in/<br>
+    prodendpoint=https://com.example.in/<br>
+    5. You can also enable/disable kotlinOptions accordingly based on your gradle plugin config.<br>
+    6. Rebuild project and Run.<br>
+    7. After successful run, delete build.gradle.kts for module which is throwing error, not the build.gradle.<br>
+
   ]]></description>
 
     <!-- Product and plugin compatibility requirements.
