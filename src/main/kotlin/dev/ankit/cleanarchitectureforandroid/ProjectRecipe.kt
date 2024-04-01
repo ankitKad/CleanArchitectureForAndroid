@@ -1,14 +1,9 @@
 import ai.grazie.utils.capitalize
-import com.android.tools.idea.npw.module.recipes.addTestDependencies
 import com.android.tools.idea.wizard.template.ModuleTemplateData
 import com.android.tools.idea.wizard.template.RecipeExecutor
-import com.android.tools.idea.wizard.template.impl.activities.common.addAllKotlinDependencies
-import com.android.tools.idea.wizard.template.impl.activities.common.addMaterialDependency
-import com.android.tools.idea.wizard.template.impl.activities.emptyActivity.src.emptyActivityKt
 import dev.ankit.cleanarchitectureforandroid.*
 import dev.ankit.cleanarchitectureforandroid.stubs.*
 import dev.ankit.cleanarchitectureforandroid.stubs.presentation.emptyLauncherActivity
-import java.io.File
 
 fun RecipeExecutor.generateEmptyActivityWithCA(
     moduleTemplateData: ModuleTemplateData,
@@ -17,7 +12,8 @@ fun RecipeExecutor.generateEmptyActivityWithCA(
     packageName: String,
     appName: String,
     minApi: Int,
-    disableScreenshot: Boolean
+    disableScreenshot: Boolean,
+    addRootCheck: Boolean
 ) {
 
     val (projectData, srcOut, resOut, manifestOut) = moduleTemplateData
@@ -81,7 +77,7 @@ fun RecipeExecutor.generateEmptyActivityWithCA(
     /**
      * Set src folder structure
      */
-    setDataLayer(moduleTemplateData, shallAddRoom, appName)
+    setDataLayer(moduleTemplateData, shallAddRoom, appName, addRootCheck)
     setDomainLayer(moduleTemplateData, appName)
     setPresentationLayer(moduleTemplateData, appName, shallAddRoom)
 
@@ -93,7 +89,7 @@ fun RecipeExecutor.generateEmptyActivityWithCA(
 
 
     save(
-        emptyApplication(packageName, appName, disableScreenshot),
+        emptyApplication(packageName, appName, disableScreenshot, addRootCheck),
         moduleTemplateData.srcDir.resolve("${appName.capitalize()}Application.kt")
     )
     save(

@@ -3,7 +3,7 @@ package dev.ankit.cleanarchitectureforandroid.stubs
 import com.android.tools.idea.wizard.template.escapeKotlinIdentifier
 import org.jetbrains.kotlin.lombok.utils.capitalize
 
-fun emptyApplication(packageName: String, itemName: String, disableScreenshot: Boolean): String {
+fun emptyApplication(packageName: String, itemName: String, disableScreenshot: Boolean, addRootCheck: Boolean): String {
     val additionalImports =
         if(disableScreenshot) {
           """
@@ -15,6 +15,26 @@ fun emptyApplication(packageName: String, itemName: String, disableScreenshot: B
             """
             """.trimIndent()
         }
+
+    val addRootCheckCode =
+        if (addRootCheck)
+            """
+        RootUtil.appCheck(p0)
+    """.trimIndent() else """
+        
+    """.trimIndent()
+
+
+
+    val rootImports =
+    if (addRootCheck) {
+            """
+            import ${packageName}.data.utils.RootUtil
+            """.trimIndent()
+    } else """
+        
+    """.trimIndent()
+
     val doDisableScreenshot =
         if (!disableScreenshot) {
             """ 
@@ -35,6 +55,7 @@ fun emptyApplication(packageName: String, itemName: String, disableScreenshot: B
                             WindowManager.LayoutParams.FLAG_SECURE,
                             WindowManager.LayoutParams.FLAG_SECURE
                         )
+                        $addRootCheckCode
                     }
 
                     override fun onActivityStarted(p0: Activity) {
@@ -71,6 +92,7 @@ package ${escapeKotlinIdentifier(packageName)}
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 $additionalImports
+$rootImports
 
 /**
  * Go the project pane in project explorer, find readme.txt file, and read and apply the instructions provided..

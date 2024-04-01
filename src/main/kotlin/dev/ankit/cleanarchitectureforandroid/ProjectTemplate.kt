@@ -62,6 +62,13 @@ val projectTemplate
             default = "DemoApp"
         }
 
+        val addRootCheck: BooleanParameter = booleanParameter {
+            name = "Add Root Check?"
+            visible = { true }
+            default = false
+            help = "If true, this will enable root check inside the app"
+        }
+
         val packageName = defaultPackageNameParameter
 
         widgets(
@@ -69,6 +76,7 @@ val projectTemplate
             CheckBoxWidget(shallAddRoom),
             CheckBoxWidget(shallAddPinView),
             CheckBoxWidget(disableScreenshot),
+            CheckBoxWidget(addRootCheck),
             PackageNameWidget(packageName),
         )
 
@@ -84,7 +92,8 @@ val projectTemplate
                 packageName.value,
                 appName.value,
                 minApi,
-                disableScreenshot.value
+                disableScreenshot.value,
+                addRootCheck.value
             )
         }
 

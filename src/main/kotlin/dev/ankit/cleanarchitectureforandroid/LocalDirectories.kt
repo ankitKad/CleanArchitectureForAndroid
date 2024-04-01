@@ -8,18 +8,23 @@ import java.io.File
 
 
 ///// DATA LAYER STARTS HERE
-fun RecipeExecutor.setDataLayer(moduleTemplateData: ModuleTemplateData, hasRoom: Boolean, appName: String) {
+fun RecipeExecutor.setDataLayer(
+    moduleTemplateData: ModuleTemplateData,
+    hasRoom: Boolean,
+    appName: String,
+    addRootCheck: Boolean
+) {
     createDirectory(moduleTemplateData.srcDir.resolve("data"))
     dataApi(moduleTemplateData, appName)
     dataLocal(moduleTemplateData)
     dataModel(moduleTemplateData)
     dataRepository(moduleTemplateData, appName)
     dataRoom(hasRoom, moduleTemplateData, appName)
-    dataUtils(moduleTemplateData, appName)
+    dataUtils(moduleTemplateData, appName, addRootCheck)
 }
 
 private fun RecipeExecutor.dataUtils(
-    moduleTemplateData: ModuleTemplateData, appName: String
+    moduleTemplateData: ModuleTemplateData, appName: String, addRootCheck: Boolean
 ) {
     //This creates the utils folder inside data folder with necessary util functions
     createDirectory(moduleTemplateData.srcDir.resolve("data/utils"))
@@ -34,6 +39,12 @@ private fun RecipeExecutor.dataUtils(
         emptyResponseToResource(moduleTemplateData.packageName),
         moduleTemplateData.srcDir.resolve("data/utils/ResponseToResource.kt")
     )
+
+    if(addRootCheck)
+        save(
+            emptyRootCheck(moduleTemplateData.packageName),
+            moduleTemplateData.srcDir.resolve("data/utils/RootUtil.kt")
+        )
 }
 
 private fun RecipeExecutor.dataRoom(
