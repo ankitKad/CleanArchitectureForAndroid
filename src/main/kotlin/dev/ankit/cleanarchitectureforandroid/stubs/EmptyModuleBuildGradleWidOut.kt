@@ -21,6 +21,10 @@ fun emptyModuleBuildGradleWidOut(
     coilVersion: String = "$".plus("coilVersion"),
 ) : String {
 
+    val stagingendpoint = "$".plus("stagingendpoint")
+    val preprodendpoint = "$".plus("preprodendpoint")
+    val prodendpoint = "$".plus("prodendpoint")
+
     val addRoomDependency = if (shallAddRoom) """
                 /**
                  * Room components
@@ -68,7 +72,7 @@ fun emptyModuleBuildGradleWidOut(
                 targetSdk 34
                 versionCode 1
                 versionName "1.0"
-                buildConfigField "String","baseUrl", "\"" + properties["stagingendpoint"] + "\""
+                buildConfigField "String","baseUrl", "\"$stagingendpoint\""
 
             }
 
@@ -79,7 +83,7 @@ fun emptyModuleBuildGradleWidOut(
                 targetSdk 34
                 versionCode 1
                 versionName "1.0"
-                buildConfigField "String","baseUrl", "\"" + properties["preprodendpoint"] + "\""
+                buildConfigField "String","baseUrl", "\"$preprodendpoint\""
             }
 
             prod {
@@ -89,7 +93,7 @@ fun emptyModuleBuildGradleWidOut(
                 targetSdk 34
                 versionCode 1
                 versionName "1.0"
-                buildConfigField "String","baseUrl", "\"" + properties["prodendpoint"] + "\""
+                buildConfigField "String","baseUrl", "\"$prodendpoint\""
             }
 
         }
