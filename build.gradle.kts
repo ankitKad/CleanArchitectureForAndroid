@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "dev.ankit"
-version = "1.0.3"
+version = "1.0.4"
 
 repositories {
     mavenCentral()
@@ -34,7 +34,7 @@ tasks {
 
     patchPluginXml {
         sinceBuild.set("231")
-        untilBuild.set("241.*")
+        untilBuild.set("251.*")
     }
 
     signPlugin {
